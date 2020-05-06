@@ -1,0 +1,7 @@
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+.terraform
+app.zip
+lambda/node_modules
+backend.tf
