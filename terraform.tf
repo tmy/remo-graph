@@ -11,3 +11,5 @@ provider "archive" {
 }
 
 data "aws_caller_identity" "self" {}
+
+data "aws_region" "self" {}
