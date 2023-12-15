@@ -1,7 +1,9 @@
-const AWS = require('aws-sdk');
+const { CloudWatch } = require('@aws-sdk/client-cloudwatch');
 
 const region = process.env.AWS_REGION;
-const cloudwatch = new AWS.CloudWatch({ region });
+const cloudwatch = new CloudWatch({
+  region,
+});
 
 // センサー情報を CloudWatch カスタムメトリックで送信
 function putMetricData(devices, now) {
@@ -48,7 +50,7 @@ function putMetricData(devices, now) {
 
   const metric = { MetricData, Namespace: 'Nature Remo' };
   console.log(JSON.stringify(metric));
-  return cloudwatch.putMetricData(metric).promise();
+  return cloudwatch.putMetricData(metric);
 }
 
 module.exports = {

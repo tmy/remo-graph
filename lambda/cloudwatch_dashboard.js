@@ -1,8 +1,10 @@
-const AWS = require('aws-sdk');
+const { CloudWatch } = require('@aws-sdk/client-cloudwatch');
 
 const region = process.env.AWS_REGION;
 const DashboardName = process.env.CLOUDWATCH_DASHBOARD_NAME;
-const cloudwatch = new AWS.CloudWatch({ region });
+const cloudwatch = new CloudWatch({
+  region,
+});
 
 // デバイス情報に応じたダッシュボードを生成
 function putDashboard(devices, now) {
@@ -59,7 +61,7 @@ function putDashboard(devices, now) {
     widgets,
   };
   const DashboardBody = JSON.stringify(body);
-  return cloudwatch.putDashboard({ DashboardName, DashboardBody }).promise();
+  return cloudwatch.putDashboard({ DashboardName, DashboardBody });
 }
 
 // ダッシュボード上にテーブル状にウィジェットをレイアウトする
