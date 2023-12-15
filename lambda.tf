@@ -6,7 +6,7 @@ resource "aws_lambda_function" "app" {
   function_name    = var.app_name
   role             = aws_iam_role.lambda.arn
   handler          = "index.handler"
-  runtime          = "nodejs12.x"
+  runtime          = "nodejs20.x"
   filename         = data.archive_file.app.output_path
   source_code_hash = data.archive_file.app.output_base64sha256
 
