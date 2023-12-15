@@ -11,8 +11,8 @@ resource "aws_kinesis_firehose_delivery_stream" "history" {
     role_arn            = aws_iam_role.firehose.arn
     prefix              = "data/!{timestamp:'year='yyyy'/month='MM'/day='dd}/" # Athena でパーティションが作れる形式
     error_output_prefix = "error/!{timestamp:'year='yyyy'/month='MM'/day='dd}/!{firehose:error-output-type}"
-    buffer_size         = 5
-    buffer_interval     = 900 # 最大値
+    buffering_size      = 5
+    buffering_interval  = 900 # 最大値
   }
 
   tags = {
